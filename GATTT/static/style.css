@@ -1,0 +1,100 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 20px;
+    margin-top: 20px;
+    margin-right: 75px;
+    margin-left: 75px;
+    background: rgba(217, 217, 217, 0.7);
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 6rem;
+    margin-left: 90px;
+}
+
+.nav-link {
+    text-decoration: none;
+    font-size: 20px;
+    color: #000;
+}
+
+.user-icon{
+    display: flex;
+    gap: 2rem;
+}
+
+.main {
+    flex: 1;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 20px;
+}
+
+.content {
+    text-align: left;
+    margin-left: 55px;
+}
+
+.content h1 {
+    font-size: 90px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.content p {
+    font-size: 40px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+}
+
+.start-shopping {
+    background: rgba(217, 217, 217, 0.7);
+    font-size: 20px;
+    width: 350px;
+    margin-left: 380px;
+    align-items: center;
+    height: 70px;
+    border-radius: 20px;
+    border: 0;
+   
+}
+.start-shopping a {
+    text-decoration: none;
+    color: #000;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 20px;
+    height: 100px;
+}
