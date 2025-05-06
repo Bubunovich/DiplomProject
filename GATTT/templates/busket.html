@@ -1,0 +1,46 @@
+{% extends 'base.html'%}
+
+{% block title %}
+Корзина
+{% endblock %}
+
+{% block header %}
+<div class="busket-data">
+    <h2>Ваша корзина</h2>
+
+    {% if products %}
+        {% for product in products %}
+        <div class="busket-item">
+            <div class="item-image">
+                <img src="{{product.Product_Image}}">
+            </div>
+
+            <div class="item-details">
+                <h3>{{ product.Product_Name }}</h3>
+                <p>Цвет: {{ product.Product_Color }}</p>
+                <p>Описание: {{ product.Product_Description }}</p>
+                <p>Цена: {{ product.Product_Price }} ₽</p>
+            </div>
+
+            <div class="item-quantity">
+                <p>Количество: {{ product.Busket_Quantity }}</p>
+            </div>
+
+            <div class="item-remove">
+                <a href="{{ url_for('remove_busket', product_id=product.Id) }}">
+                    <button type="submit" class="btn">Удалить</button>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+        <div class="busket-summ">
+            <h3>Общая сумма: {{ total_price }} ₽</h3>
+            <form action="{{ url_for('check_address') }}" method="post">
+                <button type="submit" class="btn">Оформить заказ</button>
+            </form>
+        </div>
+    {% else %}
+        <p>Корзина пуста</p>
+    {% endif %}
+</div>
+{% endblock %}

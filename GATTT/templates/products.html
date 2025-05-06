@@ -1,0 +1,33 @@
+{% extends 'base.html'%}
+
+{% block title %}
+Каталог
+{% endblock %}
+
+{% block header %}
+<div class="products-wrapper">
+
+    <div class="search-container">
+        <form method="GET">
+            <input type="text" class="input" name="search" placeholder="Поиск">
+            <button type="submit" class="btn">Найти</button>
+        </form>
+    </div>
+
+    <div class="products">
+      {% for product in products %}
+        <div class="product">
+          <a href="{{ url_for('product_view', product_id=product.Id) }}">
+          <img src="{{product.Product_Image}}"></a>
+          <h2>{{ product.Product_Name }}</h2>
+          <p>Цвет: {{ product.Product_Color }}</p>
+          <p>Цена: {{ product.Product_Price }} ₽</p>
+          <a href="{{ url_for('add_busket', product_id=product.Id) }}">
+              <button type="submit" class="btn">Добавить в корзину</button>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+
+</div>
+{% endblock %}

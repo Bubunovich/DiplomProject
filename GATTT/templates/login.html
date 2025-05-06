@@ -1,0 +1,22 @@
+{% extends 'base.html'%}
+
+{% block title %}
+Авторизация
+{% endblock %}
+
+{% block header %}
+<div class="login-data">
+    <div class="log-data">
+        <h2>Вход</h2>
+        <form method="POST">
+          <input type="text" name="User_Login" placeholder="Логин пользователя" required>
+          <input type="password" name="User_Password" placeholder="Пароль" required>
+            <div class="registr">
+                <p>Нет аккаунта?</p>
+                <a href="/registration">Зарегистрироваться</a>
+            </div>
+          <button type="submit" class="btn">Войти</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

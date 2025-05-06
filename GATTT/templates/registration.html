@@ -1,0 +1,22 @@
+{% extends 'base.html'%}
+
+{% block title %}
+Регистрация
+{% endblock %}
+
+{% block header %}
+<div class="registration-data">
+    <div class="registr-data">
+        <h2>Регистрация</h2>
+        <form method="POST">
+          <input type="text" name="User_Name" placeholder="Имя пользователя" required>
+          <input type="text" name="User_Surname" placeholder="Фамилия пользователя" required>
+          <input type="text" name="User_Patronymic" placeholder="Отчество пользователя" required>
+          <input type="text" name="User_Login" placeholder="Логин" required>
+          <input type="password" name="User_Password" placeholder="Пароль" required>
+          <input type="text" name="User_Email" placeholder="Email" required>
+          <button type="submit" class="btn">Зарегистрироваться</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

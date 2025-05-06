@@ -1,0 +1,26 @@
+{% extends 'base.html'%}
+
+{% block title %}
+Корзина
+{% endblock %}
+
+{% block header %}
+
+<div class="products-view">
+    <div class="product-image">
+        <img src="{{products.Product_Image}}">
+    </div>
+
+    <div class="product-view">
+        <h1>{{ products.Product_Name }}</h1>
+        <p class="color">Цвет: {{ products.Product_Color }}</p>
+        <p class="description">{{ products.Product_Description }}</p>
+        <p class="price">Цена: {{ products.Product_Price }} ₽</p>
+        <a href = "{{ url_for('add_busket', product_id = products.Id) }}">
+            <button type="submit" class="btn">Добавить в корзину</button>
+        </a>
+    </div>
+
+</div>
+
+{% endblock %}

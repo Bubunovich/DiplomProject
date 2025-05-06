@@ -1,45 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <title>GATTT</title>
-</head>
-<body>
-    <header class="header">
-        <div class="logo">GATTT</div>
-        <div class="nav">
-            <a href="#" class="nav-link">Сosmetics</a>
-            <a href="#" class="nav-link">CLothes</a>
-            <a href="/htmlpage/aboutpage.html" class="nav-link">About</a>
-        </div>
-            <div class="user-icon">
-                <a href="#">
-                    <img src="{{ url_for('static', filename='resourses/search.png') }}">
-                </a>
-                <a href="#">
-                    <img src="{{ url_for('static', filename='resourses/basket.png') }}">
-                </a>
-                <a href="/htmlpage/loginpage.html">
-                    <img src="{{ url_for('static', filename='resourses/profile.png') }}">
-                </a>
-            </div>
-    </header>
-    <main class="main">
-        <div class="content">
-            <h1>WOMEN’S<br>SHOP</h1>
-            <p>Improve your style</p> 
-        </div>
-        <button class="start-shopping" onclick="">
-            <a href="/htmlpage/shoppage.html">START SHOPING</a></button>
-    </main>
-    
-    <footer class="footer">
-        <span>ktoto2000@mail.ru</span>
-        <span>Contacts</span>
-        <span>+7 999 999-99-99</span>
-    </footer>
-    
-</body>
-</html>
+{% extends 'base.html'%}
+
+{% block title %}
+Главная страница
+{% endblock %}
+
+{% block header %}
+<main class="main">
+    <div class="content">
+        <h1>WOMEN’S<br>SHOP</h1>
+        <p>Improve your style</p> 
+    </div>
+    <button class="start-shopping" onclick="">
+        <a href="/products">START SHOPING</a></button>
+</main>
+{% endblock %}

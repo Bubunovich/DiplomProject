@@ -1,0 +1,42 @@
+{% extends 'base.html'%}
+
+{% block title %}
+Профиль
+{% endblock %}
+
+{% block header %}
+<div class="profile-data">
+        <div class="prof-data">
+            <h2>Профиль пользователя</h2>
+            <p><strong>Имя:</strong> {{ user_name }}</p>
+            <p><strong>Фамилия:</strong> {{ user_surname }}</p>
+            <p><strong>Отчество:</strong> {{ user_patronymic }}</p>
+            <p><strong>Логин:</strong> {{ user_login }}</p>
+        </div>
+        <div class="orders-data">
+            <h2>Ваши заказы</h2>
+            {% if orders %}
+                {% for order in orders %}
+                    <div class="order-block">
+                        <h3>Заказ №{{ order.id }} от {{ order.date }}</h3>
+                        <p><strong>Сумма:</strong> {{ order.total_price }} ₽</p>
+                        <div class="order-items">
+                            {% for item in order.item %}
+                                <div class="order-item">
+                                    <p><strong>{{ item.name }}</strong></p>
+                                    <p>Количество: {{ item.quantity }}</p>
+                                    <p>Цена: {{ item.price }} ₽</p>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>У вас пока нет заказов.</p>
+            {% endif %}
+        </div>
+            <form method="POST" action="{{ url_for('logout') }}">
+                <button type="submit" class="btn">Выйти</button>
+            </form>
+    </div>
+{% endblock %}

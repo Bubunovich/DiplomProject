@@ -1,0 +1,20 @@
+{% extends 'base.html'%}
+
+{% block title %}
+Адрес
+{% endblock %}
+
+{% block header %}
+<div class="address-data">
+    <div class="add-data">
+        <h2>Адрес пользователя</h2>
+        <form method="POST">
+            <input type="text" name="Address_Country" placeholder="Страна" required>
+            <input type="text" name="Address_City" placeholder="Город" required>
+            <input type="text" name="Address_Street" placeholder="Улица" required>
+            <input type="text" name="Address_Home" placeholder="Дом" required>
+            <button type="submit" class="btn">Оформить заказ</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
