@@ -62,12 +62,13 @@ body {
 
 /* Главная страница*/
 
-.main {
+.body-main {
     flex: 1;
     display: flex;
-    justify-content: left;
+    justify-content: space-between;
     align-items: center;
     padding: 20px;
+    margin-top: 100px;
 }
 
 .content {
@@ -91,11 +92,12 @@ body {
     background: rgba(217, 217, 217, 0.7);
     font-size: 20px;
     width: 350px;
-    margin-left: 380px;
     align-items: center;
     height: 70px;
     border-radius: 20px;
-    border: 0;
+    border: none;
+    margin-right: 60px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
    
 }
 .start-shopping a {
@@ -447,7 +449,22 @@ input:focus {
     text-align: center;
 }
 
-item-remove .btn {
+.item-remove .btn {
+    max-width: 100%;
+    background-color: #000000;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 10px;
+}
+
+.busket-summ {
+    margin-top: 30px;
+    text-align: right;
+}
+
+.busket-summ .btn{
     max-width: 100%;
     background-color: #000000;
     color: white;
@@ -457,12 +474,25 @@ item-remove .btn {
     font-size: 16px;
 }
 
-.busket-summ {
-    margin-top: 30px;
-    text-align: right;
+.busket-empty{
+    text-align: center;
+    margin-top: 40px;
 }
 
-.busket-summ .btn{
+/* Адресс пользователя */
+
+.address-data {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: rgba(217, 217, 217, 0.7);
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    gap: 40px;
+    text-align: center;
+}
+
+.add-data .btn {
     max-width: 100%;
     background-color: #000000;
     color: white;

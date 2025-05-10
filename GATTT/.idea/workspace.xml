@@ -5,42 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c13c0f0e-7e5c-4842-afce-b342e64c7c2d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/Белая пижама.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/Белый боди с коротким рукавом.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/Белый боди с открытыми плечами.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/Белый боди с рукавом.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/Белый топ с горлом.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/Белый топ с длинным рукавом.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/Белый топ с коротким рукавом.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/Белый топ с открытыми плечами.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/Набор женских трусов кружево.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/Набор женских трусов лапша.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/Набор спортивных женских стрингов.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/Пижама сердечко.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/Черная пижама.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/Черный боди с коротким рукавом.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/Черный боди с открытыми плечами.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/Черный боди с рукавом.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/Черный топ с горлом.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/Черный топ с длинным рукавом.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/Черный топ с коротким рукавом.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/Черный топ с открытыми плечами.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/address.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/busket.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/product_view.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/products.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/profile.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/registration.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/site.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/site.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/resourses/basket.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/resourses/basket.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/resourses/profile.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/resourses/profile.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/resourses/search.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/static/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/busket.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/busket.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/main.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Word/Луценко.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../Word/Луценко.docx" afterDir="false" />
     </list>

@@ -1,11 +1,11 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, flash
 import pyodbc
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
 def get_db_connection(): #подключение к базе данных
-    server = '192.168.0.22,1433'  # имя сервера и порт
+    server = '192.168.68.55,1433'  # имя сервера и порт
     database = 'GATTT'
     username = 'SA'
     password = 'MyStrongPass123'
@@ -253,9 +253,6 @@ def order(): #добавление товаров в заказ
     cursor.execute("SELECT * FROM Busket WHERE Busket_User = ?", (user_id,))
     product = cursor.fetchall()
 
-    if not product:
-        return "Корзина пуста"
-
     cursor.execute("INSERT INTO Orders (Order_User) VALUES (?)", (user_id,))
     order_id = cursor.execute("SELECT @@IDENTITY").fetchone()[0]
 
@@ -272,7 +269,8 @@ def order(): #добавление товаров в заказ
     conn.commit()
     conn.close()
 
-    return "Спасибо! Заказ оформлен."
+    flash('Спасибо за заказ!')
+    return redirect(url_for('profile'))
 
 @app.route('/address', methods=['GET', 'POST'])
 def address(): #добавление адреса пользователя

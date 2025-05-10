@@ -24,14 +24,24 @@
         </div>
     </header>
 
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class=flashes>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
     <main>
         {% block header %}{% endblock %}
     </main>
 
     <footer class="footer">
-        <span>ktoto2000@mail.ru</span>
+        <span>nikitaluc2005@yandex.ru</span>
         <span>Contacts</span>
-        <span>+7 999 999-99-99</span>
+        <span>+7 965 143-48-89</span>
     </footer>
 </body>
 </html>
