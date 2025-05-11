@@ -60,7 +60,7 @@ body {
     height: 40px;
 }
 
-/* Главная страница*/
+/* Главная страница */
 
 .body-main {
     flex: 1;
@@ -105,9 +105,33 @@ body {
     color: #000;
 }
 
-/* Страница о нас*/
+/* Страница о нас */
 
+.gatt-container {
+    max-width: 800px;
+    padding: 40px;
+    text-align: center;
+    margin: 0 auto;
+}
 
+.gatt-title {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.gatt-description {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.gatt-tagline {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-top: 20px;
+}
 
 /* Страница каталога товаров */
 

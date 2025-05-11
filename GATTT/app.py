@@ -5,7 +5,7 @@ app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
 def get_db_connection(): #подключение к базе данных
-    server = '192.168.68.55,1433'  # имя сервера и порт
+    server = '192.168.0.32,1433'  # имя сервера и порт
     database = 'GATTT'
     username = 'SA'
     password = 'MyStrongPass123'
@@ -50,7 +50,7 @@ def product_view(product_id): #страница просмотра товара
     if product:
         return render_template('product_view.html', products=product)
     else:
-        return "Товар не найден", 404
+        return "Товар не найден", 404   
 
 @app.route('/registration', methods=['GET', 'POST'])
 def registration(): #страница регистрации пользователя
@@ -98,7 +98,7 @@ def login(): #страница авторизации пользователя
             session['User_Surname'] = user.User_Surname
             session['User_Name'] = user.User_Name
             session['User_Patronymic'] = user.User_Patronymic
-            return redirect(url_for('products'))  # или на главную
+            return redirect(url_for('products'))
         else:
             return "Неверный логин или пароль"
 
