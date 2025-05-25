@@ -24,17 +24,17 @@
         </div>
     </header>
 
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        <ul class=flashes>
-        {% for message in messages %}
-          <li>{{ message }}</li>
-        {% endfor %}
-        </ul>
-      {% endif %}
-    {% endwith %}
-
     <main>
+        <div id="popupModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <p id="popupMessage"></p>
+            </div>
+        </div>
+
+        <script id="popup-data" type="application/json">
+            {{ get_flashed_messages(with_categories=true) | tojson }}
+        </script>
+
         {% block header %}{% endblock %}
     </main>
 
@@ -43,5 +43,7 @@
         <span>Contacts</span>
         <span>+7 965 143-48-89</span>
     </footer>
+
+    <script src="{{ url_for('static', filename = 'js/popup.js') }}"></script>
 </body>
 </html>

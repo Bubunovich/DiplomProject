@@ -1,11 +1,12 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 import pyodbc
+from flask_mail import Mail, Message
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'
+app.secret_key = 'my_secret_key'
 
 def get_db_connection(): #подключение к базе данных
-    server = '192.168.0.32,1433'  # имя сервера и порт
+    server = '192.168.0.33,1433'  # имя сервера и порт
     database = 'GATTT'
     username = 'SA'
     password = 'MyStrongPass123'
@@ -14,12 +15,22 @@ def get_db_connection(): #подключение к базе данных
     conn = pyodbc.connect(connection_string)
     return conn
 
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = 'nikitalucenko2005@gmail.com'
+app.config['MAIL_PASSWORD'] = 'hccm ihux gdgj flyl'
+app.config['MAIL_DEFAULT_SENDER'] = 'nikitalucenko2005@gmail.com'
+
+mail = Mail(app)
+
+
 @app.route('/')
 def main(): #главная страница
     return render_template('main.html')
 
 
-@app.route('/products', methods=['GET', 'POST'])
+@app.route('/products', methods=['GET'])
 def products(): #страница каталога товаров
     conn = get_db_connection()
     cursor = conn.cursor()
@@ -31,7 +42,8 @@ def products(): #страница каталога товаров
             SELECT * FROM Product 
             WHERE LOWER(Product_Name) LIKE LOWER(?)
             OR LOWER(Product_Color) LIKE LOWER(?)
-            ''', (f'%{search_query}%', f'%{search_query}%'))
+            OR LOWER(Product_Description) LIKE LOWER(?)
+            ''', (f'%{search_query}%', f'%{search_query}%', f'%{search_query}%'))
     else:
         cursor.execute('SELECT * FROM Product')
 
@@ -75,6 +87,7 @@ def registration(): #страница регистрации пользоват�
             (user_surname, user_name, user_patronymic, user_login, user_password, user_email)
         )
         conn.commit()
+        flash('Успешная регистрация!','popup')
         return redirect(url_for('login'))
 
     return render_template('registration.html')
@@ -98,9 +111,11 @@ def login(): #страница авторизации пользователя
             session['User_Surname'] = user.User_Surname
             session['User_Name'] = user.User_Name
             session['User_Patronymic'] = user.User_Patronymic
+            flash('Успешная авторизация!','popup')
             return redirect(url_for('products'))
         else:
-            return "Неверный логин или пароль"
+            flash('Неверный логин или пароль!','popup')
+            return redirect(url_for('login'))
 
     return render_template('login.html')
 
@@ -245,31 +260,92 @@ def check_address(): # Проверка на наличие адреса
         return redirect(url_for('address'))
 
 @app.route('/order')
-def order(): #добавление товаров в заказ
+def order():
     conn = get_db_connection()
     cursor = conn.cursor()
     user_id = session.get('User_Id')
 
     cursor.execute("SELECT * FROM Busket WHERE Busket_User = ?", (user_id,))
-    product = cursor.fetchall()
+    basket_items = cursor.fetchall()
 
-    cursor.execute("INSERT INTO Orders (Order_User) VALUES (?)", (user_id,))
-    order_id = cursor.execute("SELECT @@IDENTITY").fetchone()[0]
+    # Создаем заказ
+    cursor.execute("""
+        INSERT INTO Orders (Order_User) 
+        OUTPUT inserted.Id
+        VALUES (?)
+    """, (user_id,))
+    order_id = cursor.fetchone()[0]
 
-    for products in product:
-        cursor.execute("SELECT Product_Price FROM Product WHERE Id = ?", (products.Busket_Product,))
-        product_price = cursor.fetchone()[0]
+    # Подготавливаем данные для письма
+    order_details = []
+    total_amount = 0
+
+    for item in basket_items:
+        # Получаем информацию о товаре
+        cursor.execute("""
+            SELECT Product_Name, Product_Price 
+            FROM Product 
+            WHERE Id = ?
+        """, (item.Busket_Product,))
+        product = cursor.fetchone()
+        
+        product_name = product[0]
+        price = product[1]
+        quantity = item.Busket_Quantity
+        item_total = price * quantity
+        total_amount += item_total
+
+        order_details.append({
+            'name': product_name,
+            'price': price,
+            'quantity': quantity,
+            'total': item_total
+        })
 
         cursor.execute("""
             INSERT INTO OrderItem (OrderItem_Id, OrderItem_Product, OrderItem_Quantity, OrderItem_Price)
             VALUES (?, ?, ?, ?)
-        """, (order_id, products.Busket_Product, products.Busket_Quantity, product_price))
+        """, (order_id, item.Busket_Product, quantity, price))
 
+    # Очищаем корзину
     cursor.execute("DELETE FROM Busket WHERE Busket_User = ?", (user_id,))
     conn.commit()
     conn.close()
 
-    flash('Спасибо за заказ!')
+    # Формируем и отправляем письмо
+    try:
+        # Создаем HTML-содержимое письма
+        html_content = f"""
+        <h2>Новый заказ №{order_id}</h2>
+        <table border="1" cellpadding="5" cellspacing="0">
+            <tr>
+                <th>Товар</th>
+                <th>Цена</th>
+                <th>Количество</th>
+                <th>Сумма</th>
+            </tr>
+            {"".join(
+                f"<tr><td>{item['name']}</td><td>{item['price']} руб.</td><td>{item['quantity']}</td><td>{item['total']} руб.</td></tr>"
+                for item in order_details
+            )}
+            <tr>
+                <td colspan="3"><strong>Итого:</strong></td>
+                <td><strong>{total_amount} руб.</strong></td>
+            </tr>
+        </table>
+        <p>ID пользователя: {user_id}</p>
+        """
+
+        msg = Message(
+            subject=f"Новый заказ №{order_id}",
+            recipients=["nikitalucenko2005@yandex.ru"],
+            html=html_content
+        )
+        mail.send(msg)
+    except Exception as e:
+        print(f"Ошибка при отправке письма: {e}")
+
+    flash('Спасибо за заказ!', 'popup')
     return redirect(url_for('profile'))
 
 @app.route('/address', methods=['GET', 'POST'])
