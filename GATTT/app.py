@@ -6,7 +6,7 @@ app = Flask(__name__)
 app.secret_key = 'my_secret_key'
 
 def get_db_connection(): #подключение к базе данных
-    server = '192.168.0.33,1433'  # имя сервера и порт
+    server = '172.20.10.2,1433'  # имя сервера и порт
     database = 'GATTT'
     username = 'SA'
     password = 'MyStrongPass123'
