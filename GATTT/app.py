@@ -6,7 +6,7 @@ app = Flask(__name__)
 app.secret_key = 'my_secret_key'
 
 def get_db_connection(): #подключение к базе данных
-    server = '192.168.0.30,1433'  # имя сервера и порт
+    server = '172.29.58.87,1433'  # имя сервера и порт
     database = 'GATTT'
     username = 'SA'
     password = 'MyStrongPass123'
@@ -79,7 +79,8 @@ def registration(): #страница регистрации пользоват�
 
         cursor.execute("SELECT * FROM Users WHERE User_Login = ?", (user_login,))
         if cursor.fetchone():
-            return "Пользователь с таким логином уже существует"
+            flash('Пользователь с таким логином уже существует','popup')
+            return redirect(url_for('registration'))
 
         cursor.execute("""
             INSERT INTO Users (User_Surname, User_Name, User_Patronymic, User_Login, User_Password, User_Email)
